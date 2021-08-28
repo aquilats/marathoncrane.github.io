@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marathon Crane & Transport</title>
+  <link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
+  <link href='./font/Magneto.css' rel='stylesheet' type='text/css'>
+  <link href='./style/style.css' rel='stylesheet' type='text/css'>
+  <link href='./style/nivo.css' rel='stylesheet' type='text/css'>
+  <link href="./favicon.png" rel="shortcut icon" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+  <script src="./js/jquery.nivo.slider.js"></script>
+  <script>      
+    $(function() {
+      
+      $('nav a.internal').click(function(e){
+        e.preventDefault();
+        
+        var current_article = $('article.current');
+        var next_article = $('article' + $(this).attr('href'));
+        
+        // if this page is not already displayed
+        if(!next_article.hasClass('current')){
+          // update the location hash
+          window.location.hash = $(this).attr('href');
+        
+          // update the navigation tabs
+          $('nav li.current').removeClass('current');
+          $(this).parents('nav li').addClass('current');
+          
+          // slide page transition
+          var article_script = next_article.data('script'); // find the article script
+          var callback = (article_script)?(window[article_script]()):null;
+          current_article.stop().fadeOut(300).removeClass('current');
+          next_article.addClass('current').css({left:'900px'}).show().animate({left:'0px'},{
+            duration: 500,
+            easing: "easeOutQuad"
+          });
+        }
+      });
+      
+      // #home Slider
+      // http://nivo.dev7studios.com/support/jquery-plugin-usage/
+      $('#slider').nivoSlider({
+        effect: 'sliceDown,sliceDownLeft,sliceUp,sliceUpLeft,sliceUpDown,sliceUpDownLeft,fold,fade,boxRain,boxRainReverse,boxRainGrow,boxRainGrowReverse', // Specify sets like: 'fold,fade,sliceDown'
+        slices: 15, // For slice animations
+        boxCols: 15, // For box animations
+        boxRows: 4, // For box animations
+        animSpeed: 300, // Slide transition speed
+        pauseTime: 5000, // How long each slide will show
+        startSlide: 0, // Set starting Slide (0 index)
+        directionNav: true, // Next & Prev navigation
+        directionNavHide: true, // Only show on hover
+        controlNav: false, // 1,2,3... navigation
+        controlNavThumbs: false, // Use thumbnails for Control Nav
+        controlNavThumbsFromRel: false, // Use image rel for thumbs
+        controlNavThumbsSearch: '.jpg', // Replace this with...
+        controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+        keyboardNav: true, // Use left & right arrows
+        pauseOnHover: true, // Stop animation while hovering
+        manualAdvance: false, // Force manual transitions
+        captionOpacity: 0.8, // Universal caption opacity
+        prevText: 'Prev', // Prev directionNav text
+        nextText: 'Next', // Next directionNav text
+        randomStart: false, // Start on a random slide
+        beforeChange: function(){}, // Triggers before a slide transition
+        afterChange: function(){}, // Triggers after a slide transition
+        slideshowEnd: function(){}, // Triggers after all slides have been shown
+        lastSlide: function(){}, // Triggers when last slide is shown
+        afterLoad: function(){} // Triggers when slider has loaded
+      });
+      
+      // #contact form
+      var divs = document.getElementById('ss-form').getElementsByTagName('div');
+      var numDivs = divs.length;
+      for (var j = 0; j < numDivs; j++) {
+        if (divs[j].className == 'errorbox-bad') {
+          divs[j].lastChild.firstChild.lastChild.focus();
+        }
+      }
+      for (var i = 0; i < numDivs; i++) {
+        var div = divs[i];
+        if (div.className == 'ss-form-entry' && div.firstChild && div.firstChild.className == 'ss-q-title') {
+          div.lastChild.focus();
+        }
+      }
+      
+      
+      // check for hash navigation and switch to corresponding page if necessary
+      var hash = window.location.hash;
+      // if there is a hash
+      if(hash) {
+        // search for a navigation link with the specificed hash as its href
+        var tab = $('nav a.internal[href="' + hash + '"]');
+        // if there is a nav link for the given hash
+        if(tab) {
+          // simulate a click on that nav link
+          tab.click();
+        }
+      }
+    });
+  </script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29834180-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+</head>
+<body>
+  <div id='top-wrapper'>
+    <div id='top-bar'>
+      <nav>
+        <ul>
+          <li class='current'><a href='#home' class='internal'>Home</a></li>
+          <li><a href='#trucks' class='internal'>Trucks</a></li>
+          <li><a href='#motors' class='internal'>Motors</a></li>
+          <li><a href='#contact' class='internal'>Contact</a></li>
+          <li><a href='#terms' class='internal'>Terms</a></li>
+          <li><a href="http://www.facebook.com/MarathonCraneTransport" target="_blank"><img src="./img/facebook.png" /></a></li>
+        </ul>
+      </nav>
+      <img src="./img/creditcards.gif" style='float: right; height: 30px; margin: 5px;' />
+    </div>
+    <header>
+      <img src='./img/logo.png' style='position: absolute; height: 120px; margin: 10px 20px;'/>
+      <div id='title-block'>
+        <p style='margin-top: 5px; font-size: 46pt; border-bottom: 1px solid #111;'>
+          Marathon
+        </p>
+        <p style='font-size: 30pt; border-top: 1px solid #fff;'>
+          Crane & Transport
+        </p>
+      </div>
+      <div id='address-block'>
+        <p>
+          <a class='tel' href='tel:4322422143'>(432) 242-2143</a><br/>
+          <a class='tel' href='tel:9038212381'>(903) 821-2381</a>
+        </p>
+        <p>
+          1117 S. Tripp Ave.<br/>
+          Odessa, TX 79763
+        </p>
+      </div>
+    </header>
+  </div>
+  <section id='content'>
+    <article class='current' id='home' style='display: block;'>
+      <div class="slider-wrapper theme-default">
+        <!--<div class="ribbon"></div>-->
+        <div id="slider" class="nivoSlider">
+          <img src="./img/20111115_132826.jpg" alt="" />
+          <img src="./img/20120108_102623.jpg" alt="" title="#htmlcaption1" />
+          <img src="./img/20111201_165126.jpg" alt="" title="Equipment Hauling"/>
+          <img src="./img/20111005_151028.jpg" alt="" />
+          <img src="./img/20120310_123846.jpg" alt="" title="Equipment Hauling" />
+          <img src="./img/20111011_143245.jpg" alt="" />
+          <img src="./img/T4-hauling-cropped.png" alt="" title="Equipment Lifting & Hauling" />
+        </div>
+        <div id="htmlcaption1" class="nivo-html-caption">
+          Frac Stacks
+          <div style='position:absolute;margin-left:480px; top:5px;'>Rig Maintenance</div>
+        </div>
+      </div>
+      Marathon Crane and Transport serves the Permian Basin with truck-mounted cranes and tractor trailers.
+      <br>
+      We specialize in:
+      <ul>
+        <li>hauling and lifting wellhead equipment in support of <b>hydraulic fracturing</b></li>
+        <li>installation and removal of 500bbl and smaller <b>tanks</b>, <b>heater treaters</b>, and <b>separators</b> at tank batteries</li>
+        <li>hauling <b>forklifts</b>, <b>compressors</b>, <b>coolers</b>, <b>vessels</b> and other equipment with our drop-deck and flatbed trailers and semis</li>
+        <li>light-duty lifting at drilling rig locations for <b>rig maintenance</b> and <b>repair operations</b>.</li>
+      </ul>
+    </article>
+    <article id='trucks'>
+      <p style='margin-top: 0;'>
+        Marathon owns and operates three truck-mounted cranes, two 15 ton and one 20 ton.  The cranes with operators can be contracted for a minimum of four hours, then hourly beyond the four hour minimum.  Longer term and/or recurring rates are available.
+      </p>
+      <p>
+        Each crane can haul a trailer to transport your equipment between your yard and the location.  This adds "one-call" flexibility.
+      </p>
+      <p>
+        Marathon also has a tractor trailer rig with a drop-deck trailer capable of hauling equipment and portable buildings.
+      </p>
+      <ul id="trucklist">
+        <li>
+          <div class="truck-title">15-ton National Crane</div>
+          <img class='framed' src="./img/T2.png">
+        </li>
+        <li>
+          <div class="truck-title">15-ton Terex Crane</div>
+          <img class='framed' src="./img/T1.png">
+        </li>
+        <li>
+          <div class="truck-title">20-ton National Crane</div>
+          <img class='framed' src="./img/T4.png">
+        </li>
+        <li>
+          <div class="truck-title">Tractor Trailer</div>
+          <img class='framed' src="./img/T3.png">
+        </li>
+      </ul>
+    </article>
+    <article id='motors'>
+      Marathon Crane and Transport was recently selected by 
+      <a href='http://tdt-usa.com/' target="_blank" style='color: #000;'>Titan Downhole Tools, LP</a> to serve as the West Texas Yard for Titan Motors.  We keep a variety of sizes and speeds on hand.  We have Hot Shot Trucking partners available to quickly get the motors to the rig, or we can load our customers' preferred Hot Shots.
+      <br/><br/>
+      <img class='framed' src='./img/motors.jpg' style='width: 700px; display: block; margin-left: auto; margin-right: auto;'>
+    </article>
+    <article id='contact'>
+      <div style="text-align: center;">
+        <b>Phone:</b><br>
+        <div style="margin-left: 20px;">
+          <a class='tel' href='tel:4322422143'>(432) 242-2143</a><br/>
+          <a class='tel' href='tel:9038212381'>(903) 821-2381</a>
+        </div>
+        <br>
+        <b>Location:</b><br>
+        <div style="margin-left: 20px;">
+          1117 S. Tripp Ave.<br>
+          Odessa, TX 79763<br>
+          <a href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=1117+S+Tripp+odessa+tx&amp;aq=&amp;sll=31.801526,-102.464791&amp;sspn=0.065286,0.132093&amp;t=m&amp;gl=us&amp;g=1117+S+Tripp,+Odessa,+Texas+79764&amp;ie=UTF8&amp;hq=&amp;hnear=1117+S+Tripp+Ave,+Odessa,+Texas+79763&amp;ll=31.801142,-102.464676&amp;spn=0.162232,0.190201&amp;z=11" style="color: blue; text-align: left;">
+          Map</a>
+        </div>
+        <!--div id='map' style='width: 600px; height: 400px; margin: auto; border: 1px solid #555;'></div-->
+      </div>
+      <br>
+      <form action="https://docs.google.com/spreadsheet/formResponse?formkey=dFpPZHJDUV9iUDdxTzlYZHdkOE9vV1E6MQ&amp;ifq" method="POST" id="ss-form">
+      <ul>
+      <li class="ss-item ss-item-required ss-text"><label class="ss-q-title" style="font-size: 15pt;">Send us a message</label>
+      </li>
+      <li class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_0">Your Name
+      <span class="ss-required-asterisk">*</span></label>
+      <label class="ss-q-help" for="entry_0"></label>
+      <input type="text" name="entry.0.single" value="" class="ss-q-short" id="entry_0"></div></li>
+      <li class="ss-item ss-item-required ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_1">Phone
+      <span class="ss-required-asterisk">*</span></label>
+      <label class="ss-q-help" for="entry_1">How can we get a hold of you?</label>
+      <input type="text" name="entry.1.single" value="" class="ss-q-short" id="entry_1"></div></li>
+      <li class="ss-item  ss-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_2">Email
+      </label>
+      <label class="ss-q-help" for="entry_2">How can we get a hold of you</label>
+      <input type="text" name="entry.2.single" value="" class="ss-q-short" id="entry_2"></div></li>
+      <li class="ss-item ss-item-required ss-paragraph-text"><div class="ss-form-entry"><label class="ss-q-title" for="entry_3">Message
+      <span class="ss-required-asterisk">*</span></label>
+      <label class="ss-q-help" for="entry_3">How can we help you?</label>
+      <textarea name="entry.3.single" rows="8" class="ss-q-long" id="entry_3"></textarea></div></li>
+      </ul>
+      <input type="hidden" name="pageNumber" value="0">
+      <input type="hidden" name="backupCache" value="">
+      <div class="ss-item ss-navigate"><div class="ss-form-entry">
+      <input type="submit" name="submit" value="Submit"></div></div></form>
+    </article>
+    <article id='terms'>
+      <h4 align="center">TERMS AND CONDITIONS</h4>
+      <p>Marathon Crane and Transport is hereinafter referred to as “MCT”.</p>
+      <ol>
+        <li>Equipment and personnel are subject to availability at scheduled time of request. Arrival times are not guaranteed and we bear no liability for delays of any type.</li>
+        <li>Orders for crane service will incur a four (4) hour minimum charge effective upon the crane departing MCT’s yard enroute to the customer’s requested starting location.  After the four-hour minimum, crane service will be billed until the crane returns to MCT’s yard.
+        <p>Orders for hauling are subject to a two (2) hour, or 100 mile, minimum, whichever is greater.  Billing begins when truck departs MCT’s yard enroute to the customer’s requested starting location.  After the two-hour, or 100 mile, minimum, the truck will be billed until the truck returns to MCT’s yard.</p></li>
+        <li>Customer is responsible for job site conditions and must provide ample, unrestricted firm level ground for equipment to move under its own power, set up / tear down and operate. Additional costs will be billed as incurred for delays caused by poor job site conditions. We accept no liability for damage to, or caused by, any interior or exterior ground surfaces or underground structures due to the weight of, or operations of the equipment or movement of the load.</li>
+        <li>All rates are subject to change without prior notice. Quote pricing is valid for term stated. Contractual or safety requirements presented post quote will affect pricing. Additional surcharges may apply for increased risks or costs due to subcontract terms, insurance or safety requirements of Owner and/or Contractor. No contractual relationships will be accepted after the onset of the work.</li>
+        <li>All invoices/charges are due and payable at the address of MCT set out herein within 15 days from the date of the invoice, and all unpaid sums will accrue interest at the maximum rate allowed by law from 30 days after the date of service.</li>
+        <li>All invoices/charges are presumed valid and all services presumed properly provided unless a written objection or complaint is received by MCT within seven (7) days of service.</li>
+        <li>In no event is MCT responsible for any damages or claims beyond the amount actually paid by the customer for the services associated with such freight, and customer specifically waives and disclaims any claim for incidental or consequential damages.</li>
+        <li>MCT is granted a security interest and lien (under the Texas Business &amp; Commerce Code, the Texas Property Code, and the common law of the State of Texas) upon freight transported until all charges associated with such load have been fully paid.</li>
+        <li>Customer is, in addition to the charges by MCT, responsible for all fees and tariffs associated with the freight unless there is a specific written agreement between the parties to the contrary.</li>
+        <li>In the event of any litigation as to the services provided by MCT, exclusive venue will be in a court of competent jurisdiction in Ector County, Texas.</li>
+      </ol>
+    </article>
+  </section>
+  <footer>
+    <p>Copyright &copy; 2012<br/>Marathon Crane & Transport</p>
+  </footer>
+</body>
+</html>

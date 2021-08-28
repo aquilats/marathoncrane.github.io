@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Magneto';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Magneto'), url('./font/MAGNETOB.woff') format('woff');
+}
